@@ -1,7 +1,7 @@
 {
   "name": "unify-paths",
-  "version": "1.0.0",
-  "description": "Unify paths in any texts across platforms to UNIX format\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[Dslash format for comparison, reporting, etc.",
+  "version": "1.0.1",
+  "description": "Unify paths in any texts across platforms to UNIXy (slashed dirs) format for comparison, reporting, etc.",
   "main": "dist/unify.js",
   "module": "unify.js",
   "scripts": {
