@@ -101,7 +101,7 @@ describe('advanced transformations', function () {
             const soll = `
 Error: kaboom
 Stack Trace: Error: kaboom
-    at Context.<anonymous> (<CWD>/index.js:95:10)
+    at Context.<anonymous> (<CWD>/index.js:95:19)
     at callFn (<CWD>/../node_modules/mocha/lib/runnable.js:372:21)
     at Test.Runnable.run (<CWD>/../node_modules/mocha/lib/runnable.js:364:7)
     at Runner.runTest (<CWD>/../node_modules/mocha/lib/runner.js:455:10)

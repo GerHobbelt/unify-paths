@@ -36,8 +36,7 @@
   // Regex for substitution in path
 
 
-  const baseReStr = /(^|[^\w_\\/:])((?!http|s?ftp|uri)\w+:)?[\\/]+([\w_\\/-]+?[\\/]+)?X[\\/]+([\w_\\/-]+)/.source;
-  console.error('baseReStr:', baseReStr); // Regex for generic path recognition
+  const baseReStr = /(^|[^\w_\\/:])((?!http|s?ftp|uri)\w+:)?[\\/]+([\w_\\/-]+?[\\/]+)?X[\\/]+([\w_\\/-]+)/.source; // Regex for generic path recognition
 
   const genericAbsReStr = /(^|[^\w_\\/:])((?!http|s?ftp|uri)\w+:)?([\\/]+[\w_-]+[\\/]+)([\w_\\/-]+)/g;
 
@@ -50,11 +49,6 @@
       text = text.replace(/\\/g, "/");
     }
 
-    console.error("phase 1:", {
-      input,
-      text,
-      options
-    });
     let cwdPathPrefix = (options.cwdPathPrefix || '').replace(/\\/g, '/');
     let cwdReplacement = "<CWD>";
 
@@ -66,12 +60,6 @@
       cwdReplacement += '/..';
       if (cwdPathPrefix.indexOf('/') < 0) break;
     }
-
-    console.error("phase 0:", {
-      input,
-      text,
-      options
-    });
 
     if (options.reducePaths) {
       let arr = Array.isArray(options.reducePaths) ? options.reducePaths : [options.reducePaths];
@@ -92,32 +80,19 @@
         }
 
         let re = RegExp(baseReStr.replace('X', escapeRegExp(id)), "g");
-        console.error('RE:', re);
         text = text.replace(re, function (m, prefix, uri, path1, path2) {
           // discard drive letters, e.g. "C:/", but do not delete network IDLs, e.g. "Waterloo:/":
           if (!uri || uri.length <= 2) uri = "";
           return `${prefix}${uri}/${replacement}/${path2.replace(/\\/g, '/')}`;
         });
       }
-
-      console.error("phase 2:", {
-        input,
-        text,
-        options
-      });
     }
 
     let re = genericAbsReStr;
-    console.error('RE:', re);
     text = text.replace(re, function (m, prefix, uri, path1, path2) {
       // discard drive letters, e.g. "C:/", but do not delete network IDLs, e.g. "Waterloo:/":
       if (!uri || uri.length <= 2) uri = "";
       return `${prefix}${uri}${path1.replace(/\\/g, '/')}${path2.replace(/\\/g, '/')}`;
-    });
-    console.error("phase 4:", {
-      input,
-      text,
-      options
     });
     return text;
   }
