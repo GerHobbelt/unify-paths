@@ -1,0 +1,35 @@
+{
+  "name": "unify-paths",
+  "version": "1.0.0",
+  "description": "Unify paths in any texts across platforms to UNIX format\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[Dslash format for comparison, reporting, etc.",
+  "main": "dist/unify.js",
+  "module": "unify.js",
+  "scripts": {
+    "build": "babel unify.js -o dist/unify.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GerHobbelt/unify-paths.git"
+  },
+  "keywords": [
+    "path",
+    "unix",
+    "windows",
+    "unify",
+    "slash",
+    "backslash"
+  ],
+  "author": "Ger Hobbelt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GerHobbelt/unify-paths/issues"
+  },
+  "homepage": "https://github.com/GerHobbelt/unify-paths#readme",
+  "devDependencies": {
+    "@gerhobbelt/babel-cli": "^7.0.1-15",
+    "@gerhobbelt/babel-core": "^7.0.1-15",
+    "@gerhobbelt/babel-preset-env": "^7.0.1-15",
+    "mocha": "^5.2.0"
+  }
+}
