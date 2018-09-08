@@ -1,4 +1,4 @@
-# unify-paths  [![TravisCI](https://travis-ci.org/GerHobbelt/unify-paths.svg?branch=master)](https://travis-ci.org/GerHobbelt/unify-paths)
+# unify-paths  [![npm](https://img.shields.io/npm/v/:package.svg)](https://www.npmjs.com/package/unify-paths)   [![TravisCI](https://travis-ci.org/GerHobbelt/unify-paths.svg?branch=master)](https://travis-ci.org/GerHobbelt/unify-paths)   [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
 Unify file paths from any platform (Windows, OSX, UNIX) inside any text (string) to UNIX format.
 
