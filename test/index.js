@@ -98,7 +98,7 @@ describe('advanced transformations', function () {
             let ist = unify(msg, {
                 cwdPathPrefix: cwd
             });
-            const soll = `
+            let soll = `
 Error: kaboom
 Stack Trace: Error: kaboom
     at Context.<anonymous> (<CWD>/index.js:95:19)
@@ -114,7 +114,25 @@ Stack Trace: Error: kaboom
     at tryOnImmediate (timers.js:752:5)
     at processImmediate [as _immediateCallback] (timers.js:729:5)
 `;
-            assert.strictEqual(ist, soll.trim(), `Exception ${ex} in CWD "${cwd}" should have printed as "${soll.trim()}"`);
+            // postprocess both sides so the various Node versions tested on TravisCI will all pass:
+            soll = soll.trim().replace(/[0-9]+/g, '999');
+            ist = ist.replace(/[0-9]+/g, '999');
+            // also note that the 'Immediate...' line in there is not stable across NodeJS versions,
+            // hence we tweak that bit too to prevent diff reports like this:
+            // 
+            //      -    at Immediate._onImmediate (<CWD>/../node_modules/mocha/lib/runner.js:347:5)
+            //      -    at runCallback (timers.js:763:18)
+            //      -    at tryOnImmediate (timers.js:734:5)
+            //      -    at processImmediate (timers.js:716:5)
+            //      +    at Immediate.<anonymous> (<CWD>/../node_modules/mocha/lib/runner.js:347:5)
+            //      +    at runCallback (timers.js:794:20)
+            //      +    at tryOnImmediate (timers.js:752:5)
+            //      +    at processImmediate [as _immediateCallback] (timers.js:729:5)
+            //      
+            soll = soll.replace(/Immediate\.[^(]+/g, 'Immediate\.XXXXXX ');
+            ist = ist.replace(/Immediate\.[^(]+/g, 'Immediate\.XXXXXX ');
+
+            assert.strictEqual(ist, soll, `Exception ${ex} in CWD "${cwd}" should have printed as "${soll}"`);
         }
     });
 });
