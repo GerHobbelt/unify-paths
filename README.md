@@ -1,4 +1,4 @@
-# unify-paths
+# unify-paths  ![https://travis-ci.org/GerHobbelt/unify-paths](https://travis-ci.org/GerHobbelt/unify-paths.svg?branch=master)
 
 Unify file paths from any platform (Windows, OSX, UNIX) inside any text (string) to UNIX format.
 
