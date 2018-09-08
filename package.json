@@ -6,7 +6,8 @@
   "module": "unify.js",
   "scripts": {
     "build": "babel unify.js -o dist/unify.js",
-    "test": "mocha"
+    "test": "mocha",
+    "pub": "npm publish --access public"
   },
   "repository": {
     "type": "git",
