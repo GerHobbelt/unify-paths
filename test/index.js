@@ -129,8 +129,14 @@ Stack Trace: Error: kaboom
             //      +    at tryOnImmediate (timers.js:752:5)
             //      +    at processImmediate [as _immediateCallback] (timers.js:729:5)
             //      
-            soll = soll.replace(/Immediate\.[^(]+/g, 'Immediate\.XXXXXX ');
-            ist = ist.replace(/Immediate\.[^(]+/g, 'Immediate\.XXXXXX ');
+            // and
+            // 
+            //           at tryOnImmediate (timers.js:999:999)
+            //      -    at processImmediate (timers.js:999:999)
+            //      +    at processImmediate [as _immediateCallback] (timers.js:999:999)            
+            //      
+            soll = soll.replace(/Immediate[^(]+/g, 'Immediate\.SOMETHING ');
+            ist = ist.replace(/Immediate[^(]+/g, 'Immediate\.SOMETHING ');
 
             assert.strictEqual(ist, soll, `Exception ${ex} in CWD "${cwd}" should have printed as "${soll}"`);
         }
